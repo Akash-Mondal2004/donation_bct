@@ -4,16 +4,11 @@ import { useStateContext } from '../context';
 import { CustomButton } from './';
 import { logo, menu,search,thirdweb} from '../assets';
 import { navlinks,client } from '../constants';
-import { ConnectButton } from "thirdweb/react";
-import { createWallet, inAppWallet } from "thirdweb/wallets";
-import { useClaimedNFTSupply } from '@thirdweb-dev/react';
 
-const wallets = [
-  inAppWallet(),
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  createWallet("me.rainbow"),
-];
+import { useClaimedNFTSupply } from '@thirdweb-dev/react';
+// import { connectWallet } from '../context';
+import { ConnectWallet } from '@thirdweb-dev/react';
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -32,16 +27,15 @@ const Navbar = () => {
       </div>
 
       <div className="sm:flex hidden flex-row justify-end gap-4">
-        <CustomButton 
-          btnType="button"
-          title={address ? 'Create a campaign' : 'Connect'}
-          styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-          handleClick={() => {
-            if(address) navigate('create-campaign')
-            else <ConnectButton client={client} wallets={wallets} />
-          }}
-        />
-
+      
+              {/* btnType="button"
+              title={address ? 'Create a campaign' : 'Connect'}
+              styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+              handleClick={() => {
+                if(address) navigate('create-campaign')
+                else <ConnectWallet/>;
+              }} */}
+              <ConnectWallet/>
         <Link to="/profile">
           <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
             <img src={thirdweb} alt="user" className="w-[60%] h-[60%] object-contain" />
@@ -84,17 +78,19 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-
+ 
             <div className="flex mx-4">
-            <CustomButton 
-              btnType="button"
+             
+              {/* btnType="button"
               title={address ? 'Create a campaign' : 'Connect'}
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
                 if(address) navigate('create-campaign')
-                else connectToMetamask();
-              }}
-            />
+                else  <ConnectWallet/>;
+              }} */}
+             <ConnectWallet />
+             
+            
             </div>
           </div>
         </div>
